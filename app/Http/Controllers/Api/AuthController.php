@@ -19,8 +19,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make(
-            $request->all(), 
-            $this->repository->loginRules, 
+            $request->all(),
+            $this->repository->loginRules,
             ['email.exists' => 'User\'s email is not exist']
         );
 
@@ -55,7 +55,7 @@ class AuthController extends Controller
             $request->all(),
             $this->repository->rules,
         );
-        
+
         if ($validator->fails()) {
             return response()->json([
                 'code' => 400,

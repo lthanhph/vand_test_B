@@ -15,13 +15,15 @@ class ProductController extends Controller
         $this->repository = new ProductRepository();
     }
 
-    public function index() {
+    public function index()
+    {
         return response()->json([
             'stores' => $this->repository->paginate(),
         ]);
     }
 
-    public function detail($id) {
+    public function detail($id)
+    {
         $product = $this->repository->find($id);
         if (empty($product)) {
             return response()->json([
@@ -29,7 +31,7 @@ class ProductController extends Controller
                 'message' => 'Product not found',
             ]);
         }
-        
+
         return response()->json([
             'code' => 200,
             'message' => 'Get product detail success',
@@ -44,7 +46,7 @@ class ProductController extends Controller
             return response()->json([
                 'code' => 400,
                 'message' => 'Search input is empty',
-            ]); 
+            ]);
         }
 
         $products = $this->repository->search($search);
@@ -63,12 +65,13 @@ class ProductController extends Controller
         ]);
     }
 
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
         $validator = Validator::make(
             $request->all(),
             $this->repository->rules,
         );
-        
+
         if ($validator->fails()) {
             return response()->json([
                 'code' => 400,
@@ -86,7 +89,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update($id, Request $request) 
+    public function update($id, Request $request)
     {
         $product = $this->repository->find($id);
         if (empty($product)) {
@@ -100,7 +103,7 @@ class ProductController extends Controller
             $request->all(),
             $this->repository->rules,
         );
-        
+
         if ($validator->fails()) {
             return response()->json([
                 'code' => 400,

@@ -33,7 +33,7 @@ class ProductRepository
             $date = date('Y-m-d', $timestamp);
             $before = $date . ' 00:00:00';
             $after = $date . ' 23:59:59';
-            $query->orWhereBetween('date_of_manufacture' , [$before, $after]);
+            $query->orWhereBetween('date_of_manufacture', [$before, $after]);
         }
 
         return $query->get();

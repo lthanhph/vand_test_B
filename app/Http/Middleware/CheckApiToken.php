@@ -27,6 +27,6 @@ class CheckApiToken
         return response()->json([
             'code' => 400,
             'message' => 'Api Token is invalid'
-        ]); 
+        ]);
     }
 }

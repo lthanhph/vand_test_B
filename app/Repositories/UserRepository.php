@@ -21,14 +21,15 @@ class UserRepository
         'password' => 'required|min:3|max:255'
     ];
 
-    public function generateApiToken() {
+    public function generateApiToken()
+    {
         $apiToken = Str::random(50);
         $user = $this->getByApiToken($apiToken);
 
         if (!empty($user)) {
             $try = 1;
             $max = 10;
-            while($try <= $max) {
+            while ($try <= $max) {
                 $apiToken = Str::random(50);
                 $user = $this->getByApiToken($apiToken);
 
@@ -45,12 +46,12 @@ class UserRepository
         return $apiToken;
     }
 
-    public function getByEmail($email) 
+    public function getByEmail($email)
     {
         return User::where('email', $email)->first();
     }
 
-    public function getByApiToken($apiToken) 
+    public function getByApiToken($apiToken)
     {
         return User::where('api_token', $apiToken)->first();
     }

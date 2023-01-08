@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
                 'user_id' => 1
             ]);
         }
-        
+
         for ($i = 1; $i <= 100; $i++) {
             Product::create([
                 'name' => 'product_' . $i,
